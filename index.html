@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fabio Battini</title>
-  <meta name="description" content="Fabio Battini is a data scientist and researcher building models and stories about cities, energy, and people.">
+  <title>Federico Battini</title>
+  <meta name="description" content="Federico Battini is a data scientist documenting work on AI, urban energy modeling, and high-performance computing.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,11 +16,8 @@
       --accent: #2b7a78;
       --accent-light: rgba(43, 122, 120, 0.08);
       --border: #d9dee6;
-      --code: #111827;
     }
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -45,14 +42,14 @@
       z-index: 10;
     }
     .nav {
-      max-width: 900px;
+      max-width: 820px;
       margin: 0 auto;
       padding: 1.1rem clamp(1rem, 4vw, 1.6rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 0.8rem;
+      flex-wrap: wrap;
       font-size: 0.95rem;
     }
     .nav-brand {
@@ -66,308 +63,205 @@
       gap: 0.9rem;
     }
     main {
-      max-width: 900px;
+      max-width: 820px;
       margin: 0 auto;
-      padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 1.6rem) 6rem;
-    }
-    .intro {
-      display: grid;
-      gap: 0.8rem;
-      margin-bottom: clamp(2.6rem, 6vw, 3.8rem);
-    }
-    .intro h1 {
-      font-family: 'Source Serif 4', 'Georgia', serif;
-      font-size: clamp(2.3rem, 4vw, 3.1rem);
-      line-height: 1.1;
-      margin: 0;
-    }
-    .intro .byline {
-      font-size: 1.05rem;
-      color: var(--muted);
-    }
-    .intro .summary {
-      font-size: 1.1rem;
-      max-width: 60ch;
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 1.6rem) 5rem;
     }
     section {
-      margin-bottom: clamp(2.6rem, 6vw, 4rem);
+      margin-bottom: clamp(2.4rem, 6vw, 3.8rem);
     }
-    section h2 {
+    h1, h2, h3 {
       font-family: 'Source Serif 4', 'Georgia', serif;
-      font-size: 1.65rem;
-      margin-bottom: 1rem;
+      margin: 0 0 0.7rem;
+      letter-spacing: -0.01em;
     }
-    .note {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.3rem 1.4rem;
-      background: #fff;
-      box-shadow: 0 12px 20px -24px rgba(17, 24, 39, 0.25);
-    }
+    h1 { font-size: clamp(2.3rem, 4vw, 3.1rem); line-height: 1.1; }
+    h2 { font-size: 1.7rem; }
+    h3 { font-size: 1.1rem; }
+    .note { color: var(--muted); font-size: 0.95rem; }
     .list-simple {
-      display: grid;
-      gap: 1.4rem;
+      list-style: none;
       padding: 0;
       margin: 0;
-      list-style: none;
+      display: grid;
+      gap: 1.3rem;
     }
     .list-simple li {
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.3rem 1.4rem;
+      padding: 1.2rem 1.3rem;
     }
-    .list-simple h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.1rem;
-    }
-    .list-simple p {
-      margin: 0.2rem 0 0;
+    .list-simple p { margin: 0.35rem 0 0; color: var(--muted); }
+    .meta {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
     }
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-top: 0.7rem;
-      font-size: 0.8rem;
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
     }
     .tag {
       padding: 0.2rem 0.55rem;
       border-radius: 999px;
       background: var(--accent-light);
       color: var(--accent);
-      border: 1px solid rgba(43, 122, 120, 0.15);
+      border: 1px solid rgba(43, 122, 120, 0.18);
       letter-spacing: 0.02em;
-    }
-    .columns {
-      display: grid;
-      gap: 1.5rem;
-    }
-    .columns.two {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
     blockquote {
       border-left: 3px solid var(--accent);
-      margin: 0;
+      margin: 1.5rem 0 0;
       padding-left: 1rem;
       color: var(--muted);
       font-style: italic;
     }
     footer {
       border-top: 1px solid rgba(220, 224, 232, 0.6);
-      padding: 2rem clamp(1rem, 4vw, 1.6rem);
       text-align: center;
-      color: var(--muted);
+      padding: 2rem clamp(1rem, 4vw, 1.6rem);
       font-size: 0.92rem;
-    }
-    footer a {
-      color: inherit;
-    }
-    .post-meta {
-      font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 0.3rem;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-    .writing-list li {
-      display: grid;
-      gap: 0.4rem;
-    }
-    .writing-list a {
-      font-weight: 500;
-    }
-    .stacked {
-      display: grid;
-      gap: 1rem;
     }
     @media (max-width: 640px) {
-      header {
-        position: static;
-      }
-      .nav {
-        justify-content: center;
-      }
-      .nav-links {
-        justify-content: center;
-      }
-      main {
-        padding-bottom: 3rem;
-      }
-      .list-simple li,
-      .card {
-        padding: 1.1rem 1.2rem;
-      }
+      header { position: static; }
+      .nav { justify-content: center; }
+      .nav-links { justify-content: center; }
+      .list-simple li { padding: 1rem 1.1rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <span class="nav-brand">Fabio Battini</span>
+      <span class="nav-brand">Federico Battini</span>
       <nav class="nav-links" aria-label="Primary">
         <a href="#about">About</a>
-        <a href="#now">Now</a>
-        <a href="#projects">Projects</a>
-        <a href="#writing">Writing</a>
-        <a href="#talks">Talks</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#notes">Notes</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="intro" id="about">
-      <h1>Hi, I&rsquo;m Fabio.</h1>
-      <p class="byline">Data scientist &middot; Urban energy modeler &middot; Builder of thoughtful tools for cities.</p>
-      <p class="summary">
-        I translate a PhD in Urban Building Energy Modeling into production-ready analytics. Most days I design data workflows that help public agencies, utilities, and product teams invest in retrofit programs, responsible AI, and resilient energy systems.
-      </p>
-      <div class="columns two">
-        <div class="card">
-          <h2>Research roots</h2>
-          <p>
-            My doctoral work explored how large-scale digital twins and physics-driven calibration can support decarbonization at the district scale. That research now informs the products I ship and the stories I tell with data.
-          </p>
-        </div>
-        <div class="card">
-          <h2>Industry focus</h2>
-          <p>
-            Today I partner with cross-functional teams to make messy urban data understandable. Recent work spans demand forecasting, retrofit targeting, and geospatial analytics for mobility and energy transition teams.
-          </p>
-        </div>
-      </div>
+    <section id="about">
+      <h1>Hi, this is Federico.</h1>
+      <p>I am documenting my learning notes here. Based on the number of grammar mistakes, you can tell how much ChatGPT is involved.</p>
+      <p class="note">Data scientist at IFAB Foundation. Previously built urban building energy models during a PhD and postdoc. Working across AI, HPC, and the built environment.</p>
     </section>
 
-    <section id="now">
-      <h2>What I&rsquo;m working on</h2>
-      <p class="note">Updated occasionally; see <a href="#writing">writing</a> for deeper dives.</p>
+    <section id="experience">
+      <h2>Experience</h2>
       <ul class="list-simple">
         <li>
-          <div class="post-meta">Data practice &middot; 2025</div>
-          <h3>Balancing physics-based models with modern ML stacks</h3>
-          <p>
-            Building a pipeline that merges EnergyPlus archetypes, remote sensing, and meter data to guide city-scale retrofit investments. Experimenting with active learning for reducing calibration effort.
-          </p>
-          <div class="tags">
-            <span class="tag">Urban analytics</span>
-            <span class="tag">Active learning</span>
-            <span class="tag">Energy twins</span>
-          </div>
+          <div class="meta">Feb 2024 &mdash; present &middot; IFAB Foundation &middot; Bologna</div>
+          <h3>Senior Data Scientist</h3>
+          <p>Leading and contributing to AI projects on the Leonardo supercomputer (TOP500 #9), optimising multi-GPU and multi-node workloads.</p>
+          <p>Applying vision transformers and CNNs for weather forecasting and renewable energy estimation; building a diffusion-based extreme weather generator for Northern Italy.</p>
+          <p>Running remote sensing pipelines that extract detailed building features from 3D point clouds and street-view imagery across 45k+ buildings. Mentoring a team of three.</p>
         </li>
         <li>
-          <div class="post-meta">Learning</div>
-          <h3>Applied AI safety for infrastructure</h3>
-          <p>
-            Prototyping guardrails for decision support tools so energy planners understand limits, bias, and uncertainty. Working notes will become a short series this year.
-          </p>
-          <div class="tags">
-            <span class="tag">Responsible AI</span>
-            <span class="tag">Civic tech</span>
-          </div>
+          <div class="meta">May 2022 &mdash; Jan 2024 &middot; Free University of Bozen-Bolzano &middot; Italy</div>
+          <h3>Postdoctoral Researcher &middot; Urban &amp; Building Energy Modeling</h3>
+          <p>Created the first open building feature dataset for Trentino &amp; South Tyrol (40k+ buildings) and orchestrated 62k+ simulations on HPC clusters.</p>
+          <p>Developed surrogate ML models delivering 90%+ accuracy for real-time building energy demand.</p>
+        </li>
+        <li>
+          <div class="meta">Nov 2019 &mdash; Oct 2022 &middot; Free University of Bozen-Bolzano &middot; Italy</div>
+          <h3>PhD Researcher &middot; Urban &amp; Building Energy Modeling</h3>
+          <p>Designed a simplification algorithm that accelerates urban simulations by 100x and shipped a user-friendly optimisation tool adopted by non-expert planners.</p>
+          <p>Served as teaching assistant across five MSc courses and supervised multiple theses.</p>
         </li>
       </ul>
     </section>
 
-    <section id="projects">
-      <h2>Selected projects</h2>
+    <section id="education">
+      <h2>Education</h2>
       <ul class="list-simple">
         <li>
-          <div class="post-meta">Digital twin</div>
-          <h3><a href="https://github.com/fbattini" target="_blank" rel="noopener">City-scale energy model</a></h3>
-          <p>
-            A reproducible workflow that synthesizes cadastral data, archetype libraries, and calibration routines. Delivered to municipal partners to prioritize retrofit funding with transparent assumptions.
-          </p>
-          <div class="tags">
-            <span class="tag">Energy modeling</span>
-            <span class="tag">Open data</span>
-            <span class="tag">Reproducibility</span>
-          </div>
+          <div class="meta">2019 &mdash; 2022 &middot; Free University of Bozen-Bolzano</div>
+          <h3>PhD &middot; Sustainable Energy and Technologies</h3>
+          <p>Urban and Building Energy Modeling</p>
         </li>
         <li>
-          <div class="post-meta">Data product</div>
-          <h3><a href="https://github.com/fbattini" target="_blank" rel="noopener">Retrofit impact navigator</a></h3>
-          <p>
-            A lightweight web app that compares retrofit scenarios across districts, highlighting cost, embodied carbon, and load shifting potential for policy and operations teams.
-          </p>
-          <div class="tags">
-            <span class="tag">Analytics engineering</span>
-            <span class="tag">Storytelling</span>
-            <span class="tag">Decision support</span>
-          </div>
+          <div class="meta">2017 &mdash; 2019 &middot; University of Trento &amp; Free University of Bozen-Bolzano</div>
+          <h3>MSc &middot; Energy Engineering</h3>
+          <p>Thesis abroad at TU Wien</p>
         </li>
         <li>
-          <div class="post-meta">Forecasting</div>
-          <h3><a href="https://github.com/fbattini" target="_blank" rel="noopener">Demand flexibility radar</a></h3>
-          <p>
-            Probabilistic forecasts that surface buildings most suited for demand response, combining gradient boosting, temporal CNNs, and interpretable summaries for program managers.
-          </p>
-          <div class="tags">
-            <span class="tag">Time series</span>
-            <span class="tag">Explainability</span>
-          </div>
+          <div class="meta">2014 &mdash; 2017 &middot; University of Bologna</div>
+          <h3>BSc &middot; Energy Engineering</h3>
+          <p>Thesis internship at ENEA</p>
         </li>
       </ul>
     </section>
 
-    <section id="writing">
-      <h2>Writing &amp; notebooks</h2>
-      <ul class="list-simple writing-list">
+    <section id="skills">
+      <h2>Skills snapshot</h2>
+      <ul class="list-simple">
         <li>
-          <div class="post-meta">Essay &middot; Draft</div>
-          <a href="#">Five lessons from calibrating the urban scale</a>
-          <p>Connecting physics-based models with ML while earning stakeholder trust and funding.</p>
+          <h3>Languages &amp; tools</h3>
+          <p>Python (5+ yrs), R, C/C++, Bash/Linux</p>
+          <div class="tags">
+            <span class="tag">NumPy</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Xarray</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">PyTorch Lightning</span>
+            <span class="tag">Scikit-learn</span>
+          </div>
         </li>
         <li>
-          <div class="post-meta">Notebook</div>
-          <a href="#">Scoring retrofit opportunities with open data</a>
-          <p>Experiments with geospatial features, socio-economic indicators, and uncertainty-aware ranking.</p>
+          <h3>LLMs &amp; HPC</h3>
+          <p>Hands-on with RAG, Hugging Face Transformers, Slurm, Ray, Accelerate, DeepSpeed, and distributed optimisation on multi-GPU clusters.</p>
         </li>
         <li>
-          <div class="post-meta">Talk notes</div>
-          <a href="#">Designing data science for city operations</a>
-          <p>Playbooks for shaping questions, measuring value, and building durable collaborations.</p>
+          <h3>Languages</h3>
+          <p>Italian (native), English (C1 IELTS), German (A2)</p>
         </li>
       </ul>
     </section>
 
-    <section id="talks">
-      <h2>Talks &amp; teaching</h2>
-      <ul class="list-simple columns two">
+    <section id="notes">
+      <h2>Academic work &amp; notes</h2>
+      <ul class="list-simple">
         <li>
-          <div class="post-meta">2024</div>
-          <h3>Workshop: Calibrating city-scale models</h3>
-          <p>Hands-on session guiding municipal analysts through reproducible pipelines for model validation.</p>
+          <h3>Publications</h3>
+          <p>Five journal papers (two in IF &gt; 10) and twelve conference papers covering urban energy modeling, HPC, and data-driven planning.</p>
         </li>
         <li>
-          <div class="post-meta">2019 &mdash; 2023</div>
-          <h3>University teaching &amp; mentoring</h3>
-          <p>Led seminars on urban energy systems, supervised student projects, and mentored early-career researchers.</p>
+          <h3>Awards</h3>
+          <p>2nd Best Student Paper, Purdue University (2021). 1st MSc Thesis Award, AIMAG (2020).</p>
+        </li>
+        <li>
+          <h3>Currently writing</h3>
+          <p>Working notes on AI for infrastructure reliability, diffusion models for climate extremes, and practical HPC tips for civic tech teams.</p>
         </li>
       </ul>
       <blockquote>
-        &ldquo;Fabio made a complex topic approachable for planners and engineers alike.&rdquo; &mdash; workshop participant
+        Measure ideas in kilowatt-hours, but tell the story in human terms.
       </blockquote>
     </section>
 
     <section id="contact">
-      <h2>Stay in touch</h2>
-      <p>
-        Email is best: <a href="mailto:hello@fbattini.dev">hello@fbattini.dev</a>. You can also find me on <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a> or explore <a href="https://github.com/fbattini" target="_blank" rel="noopener">projects on GitHub</a>.
-      </p>
-      <p class="note">I&rsquo;m open to collaborations, research partnerships, and speaking opportunities that make the built environment cleaner and fairer.</p>
+      <h2>Contact</h2>
+      <p>Email is best: <a href="mailto:hello@fbattini.dev">hello@fbattini.dev</a>. I also post code on <a href="https://github.com/fbattini" target="_blank" rel="noopener">GitHub</a> and share updates on <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      <p class="note">Open to collaborations, research partnerships, and talks about making cities more resilient.</p>
     </section>
   </main>
 
   <footer>
-    &copy; <span id="year"></span> Fabio Battini &middot; Built with curiosity in Europe.
+    &copy; <span id="year"></span> Federico Battini &middot; Built with curiosity in Europe.
   </footer>
 
   <script>
