@@ -1,14 +1,757 @@
-git clone https://github.com/yourusername/yourusername.github.io.git
-cd yourusername.github.io
-cat > index.html <<'HTML'
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hello</title>
-<h1>Hello ðŸ‘‹</h1>
-<p>If you can read this, GitHub Pages is working.</p>
-HTML
-git add index.html
-git commit -m "Initial site"
-git push
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fabio Battini | Data Scientist &amp; Urban Energy Modeler</title>
+  <meta name="description" content="Fabio Battini blends a PhD in Urban Building Energy Modeling with data science to build better cities and energy systems. Explore his projects, research, and experiments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:wght@500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #04060f;
+      --surface: rgba(12, 18, 32, 0.72);
+      --surface-strong: rgba(18, 26, 44, 0.9);
+      --text: #f2f6ff;
+      --muted: #9ba7c7;
+      --accent: #67d0ff;
+      --accent-strong: #7bffcb;
+      --border: rgba(120, 145, 199, 0.25);
+      --shadow: 0 18px 60px -40px rgba(6, 16, 40, 0.8);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      color-scheme: dark;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 10% -10%, rgba(103, 208, 255, 0.16), transparent 52%), radial-gradient(circle at 90% 0%, rgba(123, 255, 203, 0.12), transparent 40%), #050816;
+      line-height: 1.6;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+    a:hover,
+    a:focus-visible {
+      color: var(--accent-strong);
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    .top-nav a:focus-visible,
+    .button:focus-visible,
+    .chip:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+    .site-header {
+      position: relative;
+      padding: clamp(1.5rem, 3vw, 3rem) 0 5rem;
+      overflow: hidden;
+    }
+    .site-header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(103, 208, 255, 0.1) 0%, rgba(6, 12, 30, 0.85) 60%);
+      z-index: -2;
+    }
+    .site-header::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(103, 208, 255, 0.18), transparent 70%);
+      top: -180px;
+      right: -160px;
+      z-index: -1;
+      filter: blur(6px);
+    }
+    .container {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+    }
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+    .brand {
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+    }
+    .top-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .top-nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .top-nav-links a:hover {
+      color: var(--accent-strong);
+    }
+    .nav-cta {
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(24px);
+    }
+    .nav-cta:hover {
+      background: rgba(103, 208, 255, 0.15);
+    }
+    .hero {
+      display: grid;
+      gap: clamp(2rem, 5vw, 4rem);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      align-items: center;
+    }
+    .hero-copy h1 {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: clamp(2.9rem, 7vw, 4.2rem);
+      margin: 0 0 1rem;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .hero-copy .eyebrow {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.28em;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: clamp(1.1rem, 3vw, 1.35rem);
+      color: #d6ddf3;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .button.primary {
+      background: linear-gradient(135deg, rgba(103, 208, 255, 0.9), rgba(123, 255, 203, 0.9));
+      color: #081021;
+      box-shadow: 0 18px 40px -24px rgba(103, 208, 255, 0.9);
+    }
+    .button.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px -24px rgba(123, 255, 203, 0.9);
+    }
+    .button.secondary {
+      border-color: var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .button.secondary:hover {
+      border-color: rgba(103, 208, 255, 0.6);
+      background: rgba(103, 208, 255, 0.12);
+    }
+    .hero-highlights {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 4vw, 2.25rem);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 1.25rem;
+    }
+    .hero-highlights .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .hero-highlights .stat span {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-highlights .stat strong {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .hero-highlights .stat p {
+      margin: 0;
+      color: #c6cee7;
+    }
+    main {
+      position: relative;
+      z-index: 1;
+    }
+    section {
+      padding: clamp(4rem, 8vw, 6.5rem) 0;
+    }
+    .section-heading {
+      margin: 0 auto clamp(2.4rem, 5vw, 3.6rem);
+      width: min(680px, 92vw);
+      text-align: center;
+    }
+    .section-heading h2 {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: clamp(2.1rem, 5vw, 2.9rem);
+      margin-bottom: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+    .section-heading p {
+      color: #ccd3ea;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+    .content-grid {
+      display: grid;
+      gap: clamp(1.8rem, 4vw, 2.6rem);
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(1.5rem, 4vw, 2.2rem);
+    }
+    .card {
+      background: var(--surface-strong);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-md);
+      padding: clamp(1.6rem, 4vw, 2rem);
+      display: grid;
+      gap: 1rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(103, 208, 255, 0.36);
+      box-shadow: 0 18px 32px -30px rgba(103, 208, 255, 0.55);
+    }
+    .badge {
+      align-self: flex-start;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
+      color: var(--accent);
+      background: rgba(103, 208, 255, 0.08);
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid rgba(103, 208, 255, 0.2);
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+    .card p {
+      margin: 0;
+      color: #c2cae4;
+    }
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .text-link svg {
+      width: 1em;
+      height: 1em;
+    }
+    .split-panel {
+      display: grid;
+      gap: clamp(2rem, 6vw, 3rem);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1.8rem;
+      position: relative;
+    }
+    .timeline li {
+      background: var(--surface-strong);
+      border-radius: var(--radius-md);
+      padding: 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: var(--shadow);
+    }
+    .timeline li h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.15rem;
+    }
+    .timeline li span {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.8rem;
+    }
+    .chip {
+      font-size: 0.82rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #d5dcf3;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1.05rem;
+      color: var(--accent-strong);
+    }
+    .skill-card ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: #ccd3ea;
+    }
+    .skill-card li {
+      margin-bottom: 0.4rem;
+    }
+    .note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .contact-panel {
+      background: linear-gradient(135deg, rgba(103, 208, 255, 0.18), rgba(12, 18, 32, 0.85));
+      border-radius: var(--radius-lg);
+      padding: clamp(2.2rem, 6vw, 3rem);
+      border: 1px solid rgba(103, 208, 255, 0.25);
+      display: grid;
+      gap: 2rem;
+      box-shadow: 0 28px 50px -40px rgba(103, 208, 255, 0.6);
+    }
+    .contact-panel h3 {
+      margin: 0;
+      font-size: 1.9rem;
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      letter-spacing: -0.01em;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .contact-links a {
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text);
+      background: rgba(4, 6, 15, 0.35);
+    }
+    .contact-links a:hover {
+      border-color: rgba(123, 255, 203, 0.6);
+      color: var(--accent-strong);
+    }
+    footer {
+      padding: 2.5rem 0 4rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .top-nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .nav-cta {
+        order: 2;
+      }
+    }
+    @media (max-width: 620px) {
+      .contact-links {
+        flex-direction: column;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="top-nav">
+        <span class="brand">Fabio Battini</span>
+        <div class="top-nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#writing">Insights</a>
+        </div>
+        <a class="nav-cta" href="#contact">Let&apos;s collaborate</a>
+      </nav>
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Data science × built environment</p>
+          <h1>Designing data products that make cities more efficient.</h1>
+          <p class="lead">
+            I am Fabio Battini, a data scientist with a PhD in Urban Building Energy Modeling. I help public agencies, utilities, and product teams translate complex urban systems into reliable, human-centered intelligence.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="mailto:hello@fbattini.dev">Start a conversation</a>
+            <a class="button secondary" href="https://github.com/fbattini" target="_blank" rel="noopener">Explore my GitHub</a>
+          </div>
+        </div>
+        <aside class="hero-highlights">
+          <div class="stat">
+            <span>Current focus</span>
+            <strong>Data Scientist · Applied AI</strong>
+            <p>Designing analytic workflows that bridge energy models, remote sensing, and operational data.</p>
+          </div>
+          <div class="stat">
+            <span>Academic roots</span>
+            <strong>PhD Urban Building Energy Modeling</strong>
+            <p>Explored how large-scale digital twins and statistical calibration guide resilient planning.</p>
+          </div>
+          <div class="stat">
+            <span>Impact themes</span>
+            <strong>Net-zero cities · Retrofit prioritization · Demand forecasting</strong>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>From research-grade models to production-ready analytics.</h2>
+          <p>
+            I translate years of academic research in urban energy systems into pragmatic data products. The through-line: crafting tools that clarify where to invest, how to decarbonize, and when to act.
+          </p>
+        </div>
+        <div class="split-panel">
+          <div class="card">
+            <span class="badge">Approach</span>
+            <h3>Model the physics, respect the data, surface the signal.</h3>
+            <p>
+              I build solutions that balance domain expertise with modern ML. Whether calibrating an EnergyPlus model, designing feature pipelines, or shipping dashboards, the goal is always actionable clarity.
+            </p>
+            <div class="chips">
+              <span class="chip">Urban energy simulation</span>
+              <span class="chip">Geospatial analytics</span>
+              <span class="chip">Responsible AI</span>
+              <span class="chip">Product thinking</span>
+            </div>
+          </div>
+          <div class="card">
+            <span class="badge">What I&apos;m exploring</span>
+            <h3>Urban-scale intelligence that scales with teams.</h3>
+            <p>
+              Lately I have been prototyping data layers that combine satellite imagery, smart meter streams, and building typologies to accelerate retrofit targeting and demand flexibility programs.
+            </p>
+            <p class="note">
+              Always happy to collaborate on projects that make the built environment cleaner, safer, and fairer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Selected projects</h2>
+          <p>
+            A snapshot of research-driven work and production experiments. Many are open source—or on their way there.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="badge">Urban intelligence</span>
+            <h3>City-scale energy digital twin</h3>
+            <p>
+              Built a workflow that fuses cadastral data, archetype libraries, and physics-based simulation to predict hourly energy demand for every building in a major European city.
+            </p>
+            <p>
+              Reduced calibration error by 24% and unlocked scenario planning for district-level retrofits.
+            </p>
+            <a class="text-link" href="https://github.com/fbattini" target="_blank" rel="noopener">
+              View implementation
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17l7-7m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="card">
+            <span class="badge">Forecasting</span>
+            <h3>Demand flexibility radar</h3>
+            <p>
+              Engineered a probabilistic forecasting stack mixing gradient boosting and temporal CNNs to surface buildings most likely to benefit from load shifting incentives.
+            </p>
+            <p>
+              Delivered an interactive map and alerting service consumed by operations teams and policy stakeholders.
+            </p>
+            <a class="text-link" href="https://github.com/fbattini" target="_blank" rel="noopener">
+              Explore notebooks
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17l7-7m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="card">
+            <span class="badge">Product</span>
+            <h3>Retrofit impact navigator</h3>
+            <p>
+              Led the design of a web application that benchmarks retrofit packages across districts, highlighting cost, embodied carbon, and peak load impacts with transparent explainability.
+            </p>
+            <p>
+              The stack: dbt for transformations, DuckDB for ad-hoc exploration, and a lightweight React frontend deployed to the cloud.
+            </p>
+            <a class="text-link" href="https://github.com/fbattini" target="_blank" rel="noopener">
+              Browse code &amp; docs
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17l7-7m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Career snapshot</h2>
+          <p>
+            A blend of scientific rigor, data engineering, and storytelling—focused on scaling impact inside complex organizations.
+          </p>
+        </div>
+        <div class="split-panel">
+          <ul class="timeline">
+            <li>
+              <h3>Data Scientist</h3>
+              <span>2023 — present · Industry · Europe</span>
+              <p>
+                Partner with energy, mobility, and civic innovation teams to bring ML-driven insights into day-to-day decision-making. Bridging Python stacks with geospatial services and business dashboards.
+              </p>
+              <div class="chips">
+                <span class="chip">ML ops</span>
+                <span class="chip">Product analytics</span>
+                <span class="chip">Stakeholder enablement</span>
+              </div>
+            </li>
+            <li>
+              <h3>Researcher &amp; Teaching Fellow</h3>
+              <span>2018 — 2023 · University</span>
+              <p>
+                Led doctoral research on urban building energy modeling, supervising collaborative projects with municipalities and EU-funded consortia. Published on model calibration, uncertainty, and urban microclimates.
+              </p>
+              <div class="chips">
+                <span class="chip">EnergyPlus</span>
+                <span class="chip">GIS</span>
+                <span class="chip">Scientific communication</span>
+              </div>
+            </li>
+          </ul>
+          <div class="card">
+            <span class="badge">Milestones</span>
+            <h3>Highlights that shaped how I work</h3>
+            <ul>
+              <li>Designed a reproducible calibration toolkit adopted by three European cities.</li>
+              <li>Built open datasets that combined smart meter, climate, and socio-economic indicators for urban planners.</li>
+              <li>Coached interdisciplinary teams to translate prototypes into launched services.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Toolbox</h2>
+          <p>
+            The stack evolves, but curiosity and good partners stay constant. Here are the skills I lean on most.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <div class="card skill-card">
+            <h3>Data &amp; ML</h3>
+            <ul>
+              <li>Python, SQL, dbt, DuckDB</li>
+              <li>PyTorch, scikit-learn, XGBoost</li>
+              <li>Time-series modeling, forecasting, active learning</li>
+            </ul>
+          </div>
+          <div class="card skill-card">
+            <h3>Energy &amp; Geospatial</h3>
+            <ul>
+              <li>EnergyPlus, Modelica, URBANopt</li>
+              <li>GeoPandas, PostGIS, QGIS</li>
+              <li>Remote sensing, climate analytics, archetype design</li>
+            </ul>
+          </div>
+          <div class="card skill-card">
+            <h3>Product Delivery</h3>
+            <ul>
+              <li>Analytics engineering &amp; data ops</li>
+              <li>Storytelling with dashboards and narrative reporting</li>
+              <li>Facilitating workshops, stakeholder interviews, training</li>
+            </ul>
+          </div>
+          <div class="card skill-card">
+            <h3>Speaking &amp; Writing</h3>
+            <ul>
+              <li>Conference talks on urban energy and AI ethics</li>
+              <li>Technical blogging and long-form reports</li>
+              <li>Mentoring early-career analysts and researchers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Recent insights &amp; notes</h2>
+          <p>
+            Essays, talks, and experiments that explore the evolving relationship between data, policy, and the built environment.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="badge">Article</span>
+            <h3>Five lessons from calibrating the urban scale</h3>
+            <p>
+              How to combine physics-based models with machine learning without losing stakeholder trust. Includes reproducible workflows for validation and reporting.
+            </p>
+            <a class="text-link" href="#" target="_blank" rel="noopener">
+              Read the draft
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17l7-7m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+          <article class="card">
+            <span class="badge">Talk</span>
+            <h3>Designing data science for city operations</h3>
+            <p>
+              A talk distilled from collaborations with city innovation teams—covering playbooks for framing problems, measuring value, and staying grounded in community impact.
+            </p>
+            <a class="text-link" href="#" target="_blank" rel="noopener">
+              Slides coming soon
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17l7-7m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+          <article class="card">
+            <span class="badge">Notebook</span>
+            <h3>Detecting retrofit opportunities with open data</h3>
+            <p>
+              Prototyping a geospatial feature pipeline to score buildings for retrofit incentives using open cadastral, climate, and socio-economic datasets.
+            </p>
+            <a class="text-link" href="#" target="_blank" rel="noopener">
+              Open the notebook
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17l7-7m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <span class="badge">Let&apos;s build</span>
+            <h3>Have a project, dataset, or idea worth exploring?</h3>
+            <p>
+              I&apos;m open to consulting, speaking, and collaborations. Send a note with context and we will find the right way forward.
+            </p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:hello@fbattini.dev">Email</a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/fbattini" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="mailto:hello@fbattini.dev">Say hello</a>
+        <a href="https://github.com/fbattini" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>© <span id="year"></span> Fabio Battini. Crafted with curiosity and clean energy in mind.</p>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  </script>
+</body>
+</html>
