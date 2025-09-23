@@ -61,6 +61,30 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.9rem;
+      align-items: center;
+    }
+    .nav-links a,
+    .nav-links button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font: inherit;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      letter-spacing: 0.01em;
+    }
+    .nav-links a:hover,
+    .nav-links button:hover,
+    .nav-links a:focus-visible,
+    .nav-links button:focus-visible {
+      text-decoration: underline;
+    }
+    .nav-links .active-filter {
+      color: var(--text);
+      font-weight: 600;
     }
     main {
       max-width: 760px;
@@ -69,6 +93,9 @@
     }
     section {
       margin-bottom: clamp(2.4rem, 6vw, 3.6rem);
+    }
+    section.is-hidden {
+      display: none;
     }
     h1, h2, h3 {
       font-family: 'Source Serif 4', 'Georgia', serif;
@@ -152,22 +179,23 @@
     <div class="nav">
       <span class="nav-brand">Federico Battini</span>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#writing">Writing</a>
-        <a href="#playground">Playground</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-filter="about" class="filter-link">About</a>
+        <a href="#writing" data-filter="writing" class="filter-link">Writing</a>
+        <a href="#playground" data-filter="playground" class="filter-link">Playground</a>
+        <a href="#contact" data-filter="contact" class="filter-link">Contact</a>
+        <button type="button" class="filter-link" data-action="show-all">Show all</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <section id="about">
+    <section id="about" class="section-block">
       <h1>Hi, this is Federico.</h1>
       <p>I am trying to organize my work and learning notes here. Based on the topics covered you can understand how confused I am.</p>
       <p class="note">Currently, senior data scientist at <a href="https://www.ifabfoundation.org/" target="_blank" rel="noopener">IFAB Foundation</a>. I mainly work on weather and energy related machine learning projects.</p>
     </section>
 
-    <section id="writing">
+    <section id="writing" class="section-block">
       <h2>Writing</h2>
       <p class="note">I write things down to organise my thoughts and gather other people's views.</p>
       <ul class="list-simple">
@@ -189,7 +217,7 @@
       </ul>
     </section>
 
-    <section id="playground">
+    <section id="playground" class="section-block">
       <h2>Playground</h2>
       <p class="note">Learning by doing, trying to understand how things work.</p>
       <ul class="list-simple">
@@ -211,10 +239,13 @@
       </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="section-block">
       <h2>Contact</h2>
       <p>Just connect and text me on <a href="https://www.linkedin.com/in/federico-battini/" target="_blank" rel="noopener">LinkedIn</a> :)</p>
       <div class="icon-links" aria-label="Social links">
+        <a class="icon-link" href="mailto:hello@fbattini.dev" aria-label="Email">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M4.5 5h15a1.5 1.5 0 0 1 1.5 1.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11A1.5 1.5 0 0 1 4.5 5Zm0 2v.35l7.5 4.5 7.5-4.5V7Zm0 2.65V17.5h15V9.65l-7.25 4.35a1 1 0 0 1-1 0Z"/></svg>
+        </a>
         <a class="icon-link" href="https://github.com/fbattini" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2a9.99 9.99 0 0 0-3.16 19.47c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.92-.63.07-.62.07-.62 1.02.07 1.55 1.05 1.55 1.05.9 1.54 2.36 1.1 2.94.84.09-.66.35-1.1.63-1.36-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.02A9.54 9.54 0 0 1 12 6.84a9.6 9.6 0 0 1 2.51.34c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.41.11 2.66.64.7 1.02 1.59 1.02 2.68 0 3.85-2.35 4.7-4.59 4.95.36.31.68.92.68 1.86v2.76c0 .26.18.58.69.48A9.99 9.99 0 0 0 12 2Z"/></svg>
         </a>
@@ -237,6 +268,67 @@
     const yearEl = document.getElementById('year');
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
+    }
+
+    const sections = Array.from(document.querySelectorAll('.section-block'));
+    const filterLinks = Array.from(document.querySelectorAll('.filter-link'));
+    const showAllButton = document.querySelector('[data-action="show-all"]');
+
+    function setActiveLink(targetId) {
+      filterLinks.forEach(link => {
+        if (link.dataset.filter === targetId) {
+          link.classList.add('active-filter');
+        } else if (!link.dataset.action) {
+          link.classList.remove('active-filter');
+        }
+      });
+      if (!targetId && showAllButton) {
+        showAllButton.classList.add('active-filter');
+      } else if (showAllButton) {
+        showAllButton.classList.remove('active-filter');
+      }
+    }
+
+    function showSection(targetId) {
+      sections.forEach(section => {
+        if (!targetId || section.id === targetId) {
+          section.classList.remove('is-hidden');
+        } else {
+          section.classList.add('is-hidden');
+        }
+      });
+      setActiveLink(targetId);
+      if (targetId) {
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    filterLinks.forEach(link => {
+      const targetId = link.dataset.filter;
+      if (!targetId) return;
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showSection(targetId);
+        history.replaceState(null, '', '#' + targetId);
+      });
+    });
+
+    if (showAllButton) {
+      showAllButton.addEventListener('click', () => {
+        showSection();
+        history.replaceState(null, '', '#');
+      });
+    }
+
+    // Set initial state if hash exists
+    const initialHash = window.location.hash.slice(1);
+    if (initialHash && document.getElementById(initialHash)) {
+      showSection(initialHash);
+    } else if (showAllButton) {
+      showAllButton.classList.add('active-filter');
     }
   </script>
 </body>
