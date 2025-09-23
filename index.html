@@ -94,6 +94,9 @@
     section {
       margin-bottom: clamp(2.4rem, 6vw, 3.6rem);
     }
+    .section-block {
+      scroll-margin-top: 96px;
+    }
     section.is-hidden {
       display: none;
     }
@@ -289,7 +292,7 @@
       }
     }
 
-    function showSection(targetId) {
+    function showSection(targetId, shouldScroll = false) {
       sections.forEach(section => {
         if (!targetId || section.id === targetId) {
           section.classList.remove('is-hidden');
@@ -298,7 +301,7 @@
         }
       });
       setActiveLink(targetId);
-      if (targetId) {
+      if (targetId && shouldScroll) {
         const targetEl = document.getElementById(targetId);
         if (targetEl) {
           targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -311,7 +314,7 @@
       if (!targetId) return;
       link.addEventListener('click', event => {
         event.preventDefault();
-        showSection(targetId);
+        showSection(targetId, true);
         history.replaceState(null, '', '#' + targetId);
       });
     });
@@ -326,10 +329,11 @@
     // Set initial state if hash exists
     const initialHash = window.location.hash.slice(1);
     if (initialHash && document.getElementById(initialHash)) {
-      showSection(initialHash);
+      showSection(initialHash, true);
     } else if (showAllButton) {
       showAllButton.classList.add('active-filter');
     }
   </script>
 </body>
 </html>
+
