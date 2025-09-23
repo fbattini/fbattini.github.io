@@ -1,0 +1,14 @@
+git clone https://github.com/yourusername/yourusername.github.io.git
+cd yourusername.github.io
+cat > index.html <<'HTML'
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hello</title>
+<h1>Hello 👋</h1>
+<p>If you can read this, GitHub Pages is working.</p>
+HTML
+git add index.html
+git commit -m "Initial site"
+git push
