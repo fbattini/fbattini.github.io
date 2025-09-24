@@ -81,7 +81,7 @@
       </div>
     </main>
   </article>
-    <script>
+      <script>
     (function () {
       const backLink = document.getElementById('back-link');
       if (!backLink) return;
@@ -106,7 +106,7 @@
       }
 
       if (section && cameFromHome) {
-        backLink.href = ${home}#;
+        backLink.href = home + '#' + section;
       } else if (cameFromHome) {
         backLink.href = ref;
       } else {
@@ -116,5 +116,6 @@
   </script>
 </body>
 </html>
+
 
 

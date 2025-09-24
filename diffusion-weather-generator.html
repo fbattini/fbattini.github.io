@@ -71,7 +71,7 @@
       <p>Consider logging model configs, evaluation metrics, and failure cases in a simple table.</p>
     </main>
   </article>
-    <script>
+      <script>
     (function () {
       const backLink = document.getElementById('back-link');
       if (!backLink) return;
@@ -96,7 +96,7 @@
       }
 
       if (section && cameFromHome) {
-        backLink.href = ${home}#;
+        backLink.href = home + '#' + section;
       } else if (cameFromHome) {
         backLink.href = ref;
       } else {
@@ -106,5 +106,6 @@
   </script>
 </body>
 </html>
+
 
 
