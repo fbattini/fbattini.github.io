@@ -71,32 +71,40 @@
       <p>Consider logging model configs, evaluation metrics, and failure cases in a simple table.</p>
     </main>
   </article>
-  <script>
+    <script>
     (function () {
       const backLink = document.getElementById('back-link');
       if (!backLink) return;
       const home = 'https://fbattini.github.io/';
       const params = new URLSearchParams(window.location.search);
       let section = params.get('section');
-      if (!section) {
-        const ref = document.referrer || '';
-        if (ref.startsWith(home)) {
-          const hash = ref.split('#')[1];
-          if (hash) {
-            section = hash;
-          } else {
-            backLink.href = ref;
-            return;
-          }
+      const ref = document.referrer || '';
+      const cameFromHome = ref.startsWith(home);
+
+      if (!cameFromHome) {
+        section = null;
+      }
+
+      if (!section && cameFromHome) {
+        const hash = ref.split('#')[1];
+        if (hash) {
+          section = hash;
+        } else {
+          backLink.href = ref || home;
+          return;
         }
       }
-      if (section) {
-        backLink.href = `${home}#${section}`;
-      } else if (!document.referrer || !document.referrer.startsWith(home)) {
+
+      if (section && cameFromHome) {
+        backLink.href = ${home}#;
+      } else if (cameFromHome) {
+        backLink.href = ref;
+      } else {
         backLink.href = home;
       }
     })();
   </script>
 </body>
 </html>
+
 
